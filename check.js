@@ -3,7 +3,7 @@
  */
 module.exports = {
   getBrowsers: function(){
-    const u = navigator.userAgent;
+        const u = navigator.userAgent;
     let result = [];
     if (u.includes('Trident')) result.push('ie');
     if (u.includes('Presto')) result.push('opera');
@@ -12,6 +12,7 @@ module.exports = {
         result.push('firefox');
     if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) result.push('mobile');
     if (u.includes('Android') || u.includes('Adr')) result.push('android');
+    if (u.includes('iPhone') || u.includes('iPad')) result.push('ios');
     if (u.includes('iPhone')) result.push('iphone');
     if (u.includes('iPad')) result.push('ipad');
     if (u.includes('Safari')) result.push('mac');
