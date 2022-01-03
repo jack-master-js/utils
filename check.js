@@ -14,8 +14,8 @@ module.exports = {
     if(u.includes('IPad')) result.push('ipad')
     if(u.includes('Safari')) result.push('safari')
     if(u.includes('MicroMessenger')) result.push('weixin')
-    if(u.match(/\sQQ/i/) === ' qq') result.push('qq')
-      return result
+    if(u.match(/\sQQ/i) === ' qq') result.push('qq')
+    return result
   },
   /**
    * @returns {string} 返回浏览器厂商
