@@ -3,19 +3,21 @@
  */
 module.exports = {
   getBrowsers: function(){
-    const u = navigator.userAgent
-    let result = []
-    if(u.includes('Trident')) result.push('ie')
-    if(u.includes('Presto')) result.push('opera')
-    if(u.includes('Gecko') && u.indexOf('KHTML') === -1) result.push('fireFox')
-    if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) result.push('mobile')
-    if(u.includes('Android') || u.includes('Adr')) result.push('android')
-    if(u.includes('IPhone')) result.push('iphone')
-    if(u.includes('IPad')) result.push('ipad')
-    if(u.includes('Safari')) result.push('safari')
-    if(u.includes('MicroMessenger')) result.push('weixin')
-    if(u.match(/\sQQ/i) === ' qq') result.push('qq')
-    return result
+    const u = navigator.userAgent;
+    let result = [];
+    if (u.includes('Trident')) result.push('ie');
+    if (u.includes('Presto')) result.push('opera');
+    if (u.includes('AppleWebKit')) result.push('webkit');
+    if (u.includes('Gecko') && u.indexOf('KHTML') === -1)
+        result.push('firefox');
+    if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) result.push('mobile');
+    if (u.includes('Android') || u.includes('Adr')) result.push('android');
+    if (u.includes('iPhone')) result.push('iphone');
+    if (u.includes('iPad')) result.push('ipad');
+    if (u.includes('Safari')) result.push('mac');
+    if (u.includes('MicroMessenger')) result.push('weixin');
+    if (u.match(/\sQQ/i) === ' qq') result.push('qq');
+    return result;
   },
   /**
    * @returns {string} 返回浏览器厂商
