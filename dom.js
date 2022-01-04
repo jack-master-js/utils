@@ -75,29 +75,41 @@ module.exports = {
    * 进入全屏
    */
   launchFullScreen: function (element) {
-    if (!element) element = document.documentElement;
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullScreen();
+    let el = document.documentElement;
+    let rfs =
+        el.requestFullscreen ||
+        el.webkitRequestFullScreen ||
+        el.mozRequestFullScreen ||
+        el.msRequestFullscreen;
+    if (rfs) {
+        rfs.call(el);
+    } else if (typeof window.ActiveXObject !== 'undefined') {
+        //for IE, 模拟F11按键
+        let wscript = new ActiveXObject('WScript.Shell');
+        if (wscript !== null) {
+            wscript.SendKeys('{F11}');
+        }
     }
   },
   /**
    * 退出全屏
    */
   exitFullScreen: function () {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+    let el = document;
+    let rfs =
+        el.cancelFullScreen ||
+        el.webkitExitFullscreen ||
+        el.mozCancelFullScreen ||
+        el.exitFullScreen;
+
+    if (rfs) {
+        rfs.call(el);
+    } else if (typeof window.ActiveXObject !== 'undefined') {
+        //for IE, 模拟F11按键
+        let wscript = new ActiveXObject('WScript.Shell');
+        if (wscript !== null) {
+            wscript.SendKeys('{F11}');
+        }
     }
   },
 };
